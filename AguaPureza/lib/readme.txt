@@ -1,0 +1,3 @@
+1. https://stackoverflow.com/questions/8128877/auto-refresh-table-without-refreshing-page-php-mysql -- AutoRefresh
+2. https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-call-a-function-repetitively-with-setinterval-method -- AutoRefresh example
+3. ....

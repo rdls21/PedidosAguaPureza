@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AguaPureza</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="Login">
+            <h1>Iniciar sesión</h1>
+                <object align='center 'height=200 width=400 data="css/svg/AguaPureza.svg">
+                    Tu buscador no soporta formato SVG
+                </object>
+            <form action="auth.php" method="post">
+                <label for="username">
+                    <i class="svg">
+                    <object align='center 'height=40 width=40 data="css/svg/user.svg">
+                        Your browser does not support SVG
+                    </object>
+                    </i>
+                </label>
+                <input type="text" name="username" placeholder="Usuario" id="username" required>
+                <label for="password">
+                    <i class="svg"></i>
+                    <object align='center 'height=40 width=40 data="css/svg/password.svg">
+                        Your browser does not support SVG
+                    </object>
+                </label>
+                <input type="password" name="password" placeholder="Contraseña" id="password" required>
+                <input type="submit" value="Iniciar sesión">
+            </form>
+        </div>
+    </body>
+</html>
