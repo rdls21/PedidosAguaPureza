@@ -57,7 +57,6 @@ Alter table direction Add Constraint idCustomer_fk Foreign Key (idCustomer) Refe
 
 ALTER TABLE testTable MODIFY COLUMN col int null;
 
-
 Create Table orderInfo ( 
 	idOrder Int(5) Not Null Auto_Increment,
 	Date Date Not Null,
