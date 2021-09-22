@@ -1,0 +1,78 @@
+Create database aguapureza;
+
+use aguapureza
+
+Create Table user (
+id int(3) Not Null Auto_Increment, 
+username varchar(50) Not Null, 
+password varchar(255) Not Null, 
+kind int(1) not null, 
+active boolean Not Null,
+Constraint id_pk Primary Key (id)
+);
+
+Insert Into user Values (0, 'Rocket' , '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa' ,1, 1);
+
+Alter table user Add Constraint username_uk Unique (username);
+Alter table user Add Constraint dat_user_fk Foreign Key (id) References worker(idWorker);
+
+Create Table worker ( 
+	idWorker Int(3) Not Null,
+	RFC varchar(13) Not Null,
+	Name varchar(45) Not Null,
+	Tel varchar(10) Not Null,
+	Dir varchar(60) Not Null,
+	Constraint id_worker_pk Primary Key (idWorker)
+);
+// Notas: Pensar en Telefono Varchar -> int, y programar eliminar: (‘ ’, ‘(’ , ‘)’ , ‘.’, Etc);
+
+Insert Into worker Values (0, 'LOGP200101BQ9' , ‘Ricardo’ , ’1234567890’, ‘Allende 316 Centro’);
+
+Create Table product ( 
+	idProduct Int(3) Not Null Auto_Increment,
+	Name varchar(30) Not Null,
+	unitOfMeasure varchar(15) Not Null,
+	Constraint idProduct_pk Primary Key (idProduct)
+);
+
+Create Table customer (
+	idCustomer int(2) Not Null Auto_Increment,
+	RFC varchar(13),
+	name varchar (100) Not Null,
+	tel varchar(10),
+	Constraint idCustomer_pk Primary Key (idCustomer)
+);
+
+insert into Customer Values (0, 'LOMR8206281HO', 'Roberto Lozano Montiel', '9949458569');
+
+Create Table direction ( 
+	idDirection Int(3) Not Null,
+	street varchar(50) Not Null,
+	intNumber varchar(6),
+	suburb varchar(50) Not Null,
+	reference varchar(255),
+	idCustomer int(3) Not Null
+);
+Alter table direction Add Constraint idCustomer_fk Foreign Key (idCustomer) References  customer(idCustomer);
+
+ALTER TABLE testTable MODIFY COLUMN col int null;
+
+
+Create Table orderInfo ( 
+	idOrder Int(5) Not Null Auto_Increment,
+	Date Date Not Null,
+	Quantity int(3),
+	idProduct Int(2),
+	idCustomer int(3),
+	idDirection int(3),
+	idWorker Int(3),
+	State tinyint(1) Not Null,
+	isTaken tinyint(1) Not Null,
+	Constraint idDirection_pk Primary Key (idOrder)
+);
+
+insert into orderInfo (idOrder, Date, State, isTaken) Values (0, '2020-06-06', 0, 0);
+
+Update orderInfo Set Quantity='1', idProduct=1, idCustomer= 1, idDirection='1', State= 1 Where idOrder=1;
+
+Select w.Name As Name, Sum(oi.isTaken) As SUM from orderInfo as oi, worker as w Where w.id_worker = oi.idWorker Group By idWorker;
